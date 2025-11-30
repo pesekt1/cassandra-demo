@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  cassandra:
+    image: cassandra:latest
+    container_name: cassandradb
+    ports:
+      - "9042:9042"
+    volumes:
+      - cassandra_data:/var/lib/cassandra
+      - ./create-demo-db.sql:/docker-entrypoint-initdb.d/create-demo-db.sql
+      - ./cassandra-init.sh:/docker-entrypoint-initdb.d/cassandra-init.sh
+    environment:
+      - CASSANDRA_START_RPC=true
+    healthcheck:
+      test: ["CMD", "cqlsh", "-e", "describe keyspaces"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+
+volumes:
+  cassandra_data:
