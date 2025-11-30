@@ -15,7 +15,7 @@ services:
       retries: 10
 
   seeder:
-    image: bash
+    image: cassandra:latest
     depends_on:
       cassandra:
         condition: service_healthy
