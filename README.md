@@ -14,6 +14,26 @@ This demo showcases how Cassandra can be used for order management, comparing it
 1. docker-compose up -d
 2. Try queries from `demo-queries.sql` in `cqlsh` and compare with MySQL.
 
+## Seeder
+
+The `seeder.sh` script waits for Cassandra to be ready and then seeds the database with the schema and sample data from `create-demo-db.sql`.
+
+## Connect to Cassandra
+
+### DataGrip:
+
+- Host: localhost
+- Port: 9042
+- Username: cassandra
+- Password: cassandra
+
+### cqlsh:
+
+`docker exec -it cassandradb cqlsh`
+
+check if the databases exist:
+`DESCRIBE KEYSPACES;`
+
 ## Educational Notes
 
 - Cassandra is not optimized for complex aggregations (SUM, COUNT, AVG).
